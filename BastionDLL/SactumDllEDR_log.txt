@@ -1,0 +1,22 @@
+Injected in new Process!
+CreateFileA :example.txt
+WriteFile :asd
+Injected in new Process!
+CreateFileA :example.txt
+WriteFile :e
+Injected in new Process!
+CreateFileA :example.txt
+WriteFile :asd
+Injected in new Process!
+CreateFileA :example.txt
+WriteFile :ad
+Injected in new Process!
+CreateFileA :example.txt
+WriteFile :a
+CreateFileA :example.txt
+WriteFile :b
+CreateFileA :example.txt
+WriteFile :d
+Injected in new Process!
+CreateFileA :example.txt
+WriteFile :asd
