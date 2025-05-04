@@ -1,7 +1,5 @@
 # BastionEDR
 
-![BastionEDR]([path/to/image.png](https://imgur.com/a/1ezpNlm))
-
 BastionEDR is purely a learning project that has 2 components: BastionEDRAgent and BastionEdrDLL.
 The BastionEDRAgent is the Agent that will monitor the system and will inject the BastionEdrDLL in the memory of processes.
 It will skip services ( to avoid any issues ) and it will only filter some processes for now.
