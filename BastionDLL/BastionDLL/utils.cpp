@@ -105,12 +105,27 @@ void on_load()
         size_t rva_import = nt_hdr->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress;
         size_t sz_import = nt_hdr->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].Size;
 
+
         PIMAGE_IMPORT_DESCRIPTOR ptr_iat = (PIMAGE_IMPORT_DESCRIPTOR)((size_t)dos_hdr + rva_import);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetProcAddress", (DWORD_PTR)my_GetProcAddress);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "CreateFileA", (DWORD_PTR)my_CreateFileA);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "ReadFile", (DWORD_PTR)my_ReadFile);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "WriteFile", (DWORD_PTR)my_WriteFile);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "OpenProcess", (DWORD_PTR)my_OpenProcess);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "CreateProcessA", (DWORD_PTR)my_CreateProcessA);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "ExitProcess", (DWORD_PTR)my_ExitProcess);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "TerminateProcess", (DWORD_PTR)my_TerminateProcess);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentProcess", (DWORD_PTR)my_GetCurrentProcess);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentProcessId", (DWORD_PTR)my_GetCurrentProcessId);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentThreadId", (DWORD_PTR)my_GetCurrentThreadId);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetExitCodeProcess", (DWORD_PTR)my_GetExitCodeProcess);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "CloseHandle", (DWORD_PTR)my_CloseHandle);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentThread", (DWORD_PTR)my_GetCurrentThread);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "CreateThread", (DWORD_PTR)my_CreateThread);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "VirtualAlloc", (DWORD_PTR)my_VirtualAlloc);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "VirtualFree", (DWORD_PTR)my_VirtualFree);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "VirtualProtect", (DWORD_PTR)my_VirtualProtect);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "Sleep", (DWORD_PTR)my_Sleep);
+        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "LoadLibraryA", (DWORD_PTR)my_LoadLibraryA);
         break;
     }
 }
