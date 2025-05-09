@@ -114,13 +114,6 @@ void on_load()
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "CreateProcessA", (DWORD_PTR)my_CreateProcessA);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "ExitProcess", (DWORD_PTR)my_ExitProcess);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "TerminateProcess", (DWORD_PTR)my_TerminateProcess);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentProcess", (DWORD_PTR)my_GetCurrentProcess);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentProcessId", (DWORD_PTR)my_GetCurrentProcessId);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentThreadId", (DWORD_PTR)my_GetCurrentThreadId);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetExitCodeProcess", (DWORD_PTR)my_GetExitCodeProcess);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "CloseHandle", (DWORD_PTR)my_CloseHandle);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "GetCurrentThread", (DWORD_PTR)my_GetCurrentThread);
-        change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "CreateThread", (DWORD_PTR)my_CreateThread);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "VirtualAlloc", (DWORD_PTR)my_VirtualAlloc);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "VirtualFree", (DWORD_PTR)my_VirtualFree);
         change_fct(ptr_iat, dos_hdr, "KERNEL32.dll", "VirtualProtect", (DWORD_PTR)my_VirtualProtect);

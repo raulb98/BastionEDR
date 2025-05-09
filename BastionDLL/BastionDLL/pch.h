@@ -47,18 +47,34 @@ HANDLE my_OpenProcess(
     DWORD dwProcessId
 );
 
-BOOL my_CreateProcessA(LPCSTR, LPSTR, LPSECURITY_ATTRIBUTES, LPSECURITY_ATTRIBUTES, BOOL, DWORD, LPVOID, LPCSTR, LPSTARTUPINFOA, LPPROCESS_INFORMATION);
-VOID my_ExitProcess(UINT);
-BOOL my_TerminateProcess(HANDLE, UINT);
-HANDLE my_GetCurrentProcess(VOID);
-DWORD my_GetCurrentProcessId(VOID);
-DWORD my_GetCurrentThreadId(VOID);
-BOOL my_GetExitCodeProcess(HANDLE, LPDWORD);
-HANDLE my_OpenProcess(DWORD, BOOL, DWORD);
-BOOL my_CloseHandle(HANDLE);
-HANDLE my_GetCurrentThread(VOID);
-BOOL my_CreateThread(LPSECURITY_ATTRIBUTES, SIZE_T, LPTHREAD_START_ROUTINE, LPVOID, DWORD, LPDWORD);
+BOOL my_CreateProcessA(
+    LPCSTR lpApplicationName,
+    LPSTR lpCommandLine,
+    LPSECURITY_ATTRIBUTES lpProcessAttributes,
+    LPSECURITY_ATTRIBUTES lpThreadAttributes,
+    BOOL bInheritHandles,
+    DWORD dwCreationFlags,
+    LPVOID lpEnvironment,
+    LPCSTR lpCurrentDirectory,
+    LPSTARTUPINFOA lpStartupInfo,
+    LPPROCESS_INFORMATION lpProcessInformation
+);
 
+VOID my_ExitProcess(
+    UINT uExitCode
+);
+
+BOOL my_TerminateProcess(
+    HANDLE hProcess,
+    UINT uExitCode
+);
+
+DWORD my_SetFilePointer(
+    HANDLE hFile,
+    LONG lDistanceToMove,
+    PLONG lpDistanceToMoveHigh,
+    DWORD dwMoveMethod
+);
 
 LPVOID my_VirtualAlloc(
     LPVOID lpAddress,

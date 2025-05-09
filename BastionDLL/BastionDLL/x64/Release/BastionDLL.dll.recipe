@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\bucur\source\repos\BastionEdr\x64\Release\BastionDLL.dll</FullPath>
+      <FullPath>C:\Users\bucur\source\repos\BastionEDR\x64\Release\BastionDLL.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
