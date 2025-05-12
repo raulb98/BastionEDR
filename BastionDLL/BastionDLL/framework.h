@@ -24,7 +24,7 @@ public:
 
     Data()
     {
-        file.open("C:\\Users\\bucur\\source\\repos\\BastionEDR\\BastionDLL\\SactumDllEDR_log.txt", std::ios::in | std::ios::out | std::ios::app);
+        file.open("SactumDllEDR_log.txt", std::ios::in | std::ios::out | std::ios::app);
         if (!file.is_open())
         {
             printf("Could not open log file!\n");

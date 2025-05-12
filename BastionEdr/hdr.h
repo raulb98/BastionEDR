@@ -10,7 +10,7 @@
 
 BOOL inject_dll(DWORD dwPID, const char* dllPath);
 void inject(DWORD pid);
-void monitor();
+void monitor(DWORD pid, const char* name);
 void saveProcessList(DWORD* pids, int count);
 int processExists(DWORD pid);
 BOOL is_process_a_service(DWORD pid);

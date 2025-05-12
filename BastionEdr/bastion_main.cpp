@@ -63,8 +63,8 @@ BOOL inject_dll(DWORD dwPID, const char* dllPath) {
 void inject(DWORD pid)
 {
     char dllPath[MAX_PATH];
-    memcpy(dllPath, "C:\\Users\\bucur\\source\\repos\\BastionEDR\\x64\\Release\\BastionDLL.dll",
-        sizeof("C:\\Users\\bucur\\source\\repos\\BastionEDR\\x64\\Release\\BastionDLL.dll") - 1);
+    memcpy(dllPath, "BastionDLL.dll",
+        sizeof("BastionDLL.dll") - 1);
 
     // Perform the DLL injection
     if (inject_dll(pid, dllPath)) {
@@ -143,9 +143,10 @@ BOOL is_process_a_service(DWORD pid)
     return isService;
 }
 
-void monitor()
+void monitor(DWORD pid, const char* name)
 {
     DWORD currentPIDs[MAX_PROCESSES];
+    char proc_name[100] = { 0 };
     int currentCount = 0;
 
     PROCESSENTRY32 pe32;
@@ -163,10 +164,20 @@ void monitor()
             if (!processExists(pe32.th32ProcessID)) {
                 _tprintf(TEXT("New process: %s (PID %u) [%d]\n"), pe32.szExeFile, pe32.th32ProcessID, 
                     is_process_a_service(pe32.th32ProcessID));
-                if (memcmp(pe32.szExeFile, L"SanctumTest.exe", 15) == 0)
+                if ((pid != 0 ) && (pid == pe32.th32ProcessID))
                 {
                     if(!is_process_a_service(pe32.th32ProcessID))
                         inject(pe32.th32ProcessID);
+                }
+                else
+                {
+                    WideCharToMultiByte(CP_UTF8, 0, pe32.szExeFile, -1, proc_name, 100, NULL, NULL);
+                    if (strcmp(proc_name, name) == 0)
+                    {
+                        if (!is_process_a_service(pe32.th32ProcessID))
+                            inject(pe32.th32ProcessID);
+                    }
+
                 }
             }
         } while (Process32Next(hSnapshot, &pe32));
@@ -174,13 +185,30 @@ void monitor()
     }
 }
 
-int main()
+int main(int argc, const char* argv[])
 {
     printf("Start Bastion EDR!\n");
 
-    while (1) {
-        monitor();
-        Sleep(1000);
+    DWORD pid = 0;
+    char proc_name[100] = { 0 };
+
+    if (argc == 3)
+    {
+        if(strcmp(argv[1], "-pid") == 0)
+            pid = atoi(argv[2]);
+        if (strcmp(argv[1], "-name") == 0)
+            memcpy(proc_name, argv[2], strlen(argv[2]));
+    
+        while (1) {
+            monitor(pid, proc_name);
+            Sleep(1000);
+        }
+    }
+    else
+    {
+        printf("Incorrect usage:\n");
+        printf("Use: -pid <pid>");
+        printf("Use: -name <name>");
     }
 
     system("pause");
